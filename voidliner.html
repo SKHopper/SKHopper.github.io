@@ -44,10 +44,9 @@
 					<section id="wrapper">
 						<header>
 							<div class="inner">
-								<h2>CUSTOM VOXEL ENGINE & WORLD GENERATOR</h2>
+								<h2><i>VOID✧LINER!</i></h2>
 								<p>
-									After finishing my year 1 university objectives early, I took on this project<br>
-									to enhance my PCG and Unreal C++ skillset.
+									A time-trial 3D platformer with a unique mix of visuals and obstacles.
 								</p>
 							</div>
 						</header>
@@ -65,14 +64,16 @@
 										</div>
 									</div>
 
-									<h3 class="major">Optimized PCG</h3>
+									<h3 class="major">Destructible Environment</h3>
 									<p>
-										This project utilizes UE5’s asynchronous Runnable Threads to separate runtime world generation from the main game thread. This allows single tick operations which remain expensive – even after thorough optimization – to lesser impact FPS. Additionally, individual voxel (block) generation is cycled on a delay, avoiding sudden and noticeable lag spikes.
-										<br>Voxels are grouped under chunks, each of which handling the multi-instancing of visible meshes. This instancing drastically decreases GPU memory usage and increases perceived performance.
+										Though the player has intrinsic abilities like a grapple hook and wall-run, movement in this game is heavily dependent on environment. To introduce destructibility, I designed a procedural mesh which could dynamically deform and erase in response to explosive force.
 									</p>
 
-									<h3 class="major">Subterranean World</h3>
-									<p>Inspired by the megastructure landscapes of Blame, this project combines both naturally cavernous and artificial grid-like topology. 3D seeded noise is used to produce large, organic open spaces. For mineshaft-esque excavations, various space-types are generated recursively.</p>
+									<h3 class="major">Custom Post Processing</h3>
+									<p>
+										Outside the dim and rusty home base, levels in this game take advantage of multiple post-processing effects to efficiently convey info, as necessitated by high-speed platforming. A custom edge detection algorithm allows objects to appear outlined; this is combined with custom depth stencilling, by which subgroups of world objects share colours and rendering properties.
+										<br>Pause screens in levels either utilize a luminosity based pixelation or a custom cell shading algorithm, with the home base level otherwise using a custom film grain material.
+									</p>
 
 
 								</div>
