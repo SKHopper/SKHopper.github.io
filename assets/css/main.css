@@ -4142,3 +4142,17 @@ input, select, textarea {
 		}
 
 	}
+
+#banner .inner p,
+#banner .inner p a {
+	text-transform: none;
+}
+
+.no-uppercase,
+.no-uppercase a {
+	text-transform: none;
+}
+
+#wrapper > header .inner p {
+	text-transform: none;
+}
