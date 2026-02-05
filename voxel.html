@@ -82,10 +82,10 @@
 										This project utilizes UE5’s asynchronous Runnable Threads to separate runtime world generation from the main game thread. This allows single tick operations which remain expensive – even after thorough optimization – to lesser impact FPS. Additionally, individual voxel (block) generation is cycled on a delay, avoiding sudden and noticeable lag spikes.
 										<br>Voxels are grouped under chunks, each of which handling the multi-instancing of visible meshes. This instancing drastically decreases GPU memory usage and increases perceived performance.
 										<br><br>
-										Below is the game's world generation thread; here the main cycle for calculating what should be loaded is executed.
+										Below rewritten in psuedocode is the game's world generation thread; here the main cycle for calculating what should be loaded is executed.
 									</p>
 									<pre><code>
-uint32 FworldGenThread::Run() {
+worldGenThread::Run() {
 
 	validateGenerator();
 
@@ -120,9 +120,8 @@ uint32 FworldGenThread::Run() {
 
 			previousPlayerChunk = playerChunk;
 		}
-		FPlatformProcess::Sleep(cyclePeriod);
+		Sleep(cyclePeriod);
 	}
-	return 1;
 }
 </code></pre>
 
