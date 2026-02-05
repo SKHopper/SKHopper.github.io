@@ -31,10 +31,12 @@
 							<h2>Pages</h2>
 							<ul class="links">
 								<li><a href="index.html">Home</a></li>
-								<li><a href="generic.html">Generic</a></li>
-								<li><a href="elements.html">Elements</a></li>
-								<li><a href="#">Log In</a></li>
-								<li><a href="#">Sign Up</a></li>
+								<li><a href="voxel.html">PCG Voxel Engine</a></li>
+								<li><a href="hive.html">Hive - Team & Tech Lead</a></li>
+								<li><a href="sacrosanctum.html">No Sacrosanctum</a></li>
+								<li><a href="voidliner.html">Voidliner</a></li>
+								<li><a href="https://github.com/SKHopper">Github</a></li>
+								<li><a href="https://https://uk.linkedin.com/in/samuelhopper-dev">LinkedIn</a></li>
 							</ul>
 							<a href="#" class="close">Close</a>
 						</div>
@@ -77,6 +79,7 @@
 										This project utilizes UE5’s asynchronous Runnable Threads to separate runtime world generation from the main game thread. This allows single tick operations which remain expensive – even after thorough optimization – to lesser impact FPS. Additionally, individual voxel (block) generation is cycled on a delay, avoiding sudden and noticeable lag spikes.
 										<br>Voxels are grouped under chunks, each of which handling the multi-instancing of visible meshes. This instancing drastically decreases GPU memory usage and increases perceived performance.
 									</p>
+									<pre><code>Example code</code></pre>
 
 									<h3 class="major">Subterranean World</h3>
 									<p>Inspired by the megastructure landscapes of Blame, this project combines both naturally cavernous and artificial grid-like topology. 3D seeded noise is used to produce large, organic open spaces. For mineshaft-esque excavations, various space-types are generated recursively.</p>
