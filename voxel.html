@@ -73,16 +73,58 @@
 											<div class="col-4"><span class="image fit"><img src="media/pic07.jpg" alt="" /></span></div>--><!--500 by 290-->
 										</div>
 									</div>
+									<h3 class="major">Subterranean World</h3>
+									<p>Inspired by the megastructure landscapes of Blame, this project combines both naturally cavernous and artificial grid-like topology. 3D seeded noise is used to produce large, organic open spaces. For mineshaft-esque excavations, various space-types are generated recursively.</p>
+
 
 									<h3 class="major">Optimized PCG</h3>
 									<p>
 										This project utilizes UE5’s asynchronous Runnable Threads to separate runtime world generation from the main game thread. This allows single tick operations which remain expensive – even after thorough optimization – to lesser impact FPS. Additionally, individual voxel (block) generation is cycled on a delay, avoiding sudden and noticeable lag spikes.
 										<br>Voxels are grouped under chunks, each of which handling the multi-instancing of visible meshes. This instancing drastically decreases GPU memory usage and increases perceived performance.
+										<br><br>
+										Below is the game's world generation thread; here the main cycle for calculating what should be loaded is executed.
 									</p>
-									<pre><code>Example code</code></pre>
+									<pre><code>
+uint32 FworldGenThread::Run() {
 
-									<h3 class="major">Subterranean World</h3>
-									<p>Inspired by the megastructure landscapes of Blame, this project combines both naturally cavernous and artificial grid-like topology. 3D seeded noise is used to produce large, organic open spaces. For mineshaft-esque excavations, various space-types are generated recursively.</p>
+	validateGenerator();
+
+	//prepare self and gen obj for cycling
+	lastQueuedChunks = preloadChunks(generator->getLocationChunk(player->getCurrentLocation()));
+
+	//thread lifetime
+	while (!bShutdown) {
+
+		playerChunk = generator->getLocationChunk(player->getCurrentLocation());
+
+		if (playerChunk != previousPlayerChunk) {
+
+			if (not generator->getIsChunkQueueInUse()) {
+				generator->setIsChunkQueueInUse(true);
+
+				chunksToLoad = getUnloadedCloseChunks(playerChunk);
+				queueUnloadedChunks(chunksToLoad, playerChunk);
+				lastQueuedChunks = chunksToLoad;
+
+				generator->setIsChunkQueueInUse(false);
+			}
+
+			if (not generator->getIsChunkUnloadQueueInUse()) {
+				generator->setIsChunkUnloadQueueInUse(true);
+
+				chunksToUnload = getChunksToUnload(playerChunk);
+				queueLoadedFarChunks(chunksToUnload);
+
+				generator->setIsChunkUnloadQueueInUse(false);
+			}
+
+			previousPlayerChunk = playerChunk;
+		}
+		FPlatformProcess::Sleep(cyclePeriod);
+	}
+	return 1;
+}
+</code></pre>
 
 
 								</div>
