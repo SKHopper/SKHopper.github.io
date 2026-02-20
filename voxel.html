@@ -74,13 +74,35 @@
 										</div>
 									</div>
 									<h3 class="major">Subterranean World</h3>
-									<p>Inspired by the megastructure landscapes of Blame, this project combines both naturally cavernous and artificial grid-like topology. 3D seeded noise is used to produce large, organic open spaces. For mineshaft-esque excavations, various space-types are generated recursively.</p>
+									<p>Inspired by the megastructure landscapes of Blame, this project combines both naturally cavernous and artificial grid-like topology. 3D seeded noise is used to produce large, organic open spaces. For mineshaft-esque excavations, various space types are generated recursively.</p>
 
 
 									<h3 class="major">Optimized PCG</h3>
 									<p>
 										This project utilizes UE5’s asynchronous Runnable Threads to separate runtime world generation from the main game thread. This allows single tick operations which remain expensive – even after thorough optimization – to lesser impact FPS. Additionally, individual voxel (block) generation is cycled on a delay, avoiding sudden and noticeable lag spikes.
 										<br>Voxels are grouped under chunks, each of which handling the multi-instancing of visible meshes. This instancing drastically decreases GPU memory usage and increases perceived performance.
+										<br><br>
+										<b>Prototype Iterations:</b>
+										<br><br>
+										Utilized mesh instancing to generate a chunk of voxels.
+										<br><br>
+										Created a hierarchy to manage multiple chunks.
+										<br><br>
+										Improved managerial hierarchy to allow for cross-chunk communication.
+										<br><br>
+										Added voxel destruction and replacing.
+										<br><br>
+										Designed an optimization algorithm by which only the surface of a chunk is spawned, removing 2774 unnecessary instances per chunk of 16 voxels cubed.
+										<br><br>
+										Improved said optimization algorithm to function above the individual chunk level.
+										<br><br>
+										Added data-based block type generation.
+										<br><br>
+										Added dynamic instancing logic for chunks with multiple block types.
+										<br><br>
+										Moved PCG calculations to a custom thread and distributed instancing times.
+										<br><br>
+										Implemented culling, saving, and loading.
 									</p>
 	<!--<br><br>
 										Below rewritten in psuedocode is the game's world generation thread; here the main cycle for calculating what should be loaded is executed.

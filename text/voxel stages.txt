@@ -1,0 +1,20 @@
+Utilized mesh instancing to generate a chunk of voxels.
+
+Created a hierarchy to manage multiple chunks.
+
+Improved managerial hierarchy to allow for cross-chunk communication.
+
+Added voxel destruction and replacing.
+
+Designed an optimization algorithm by which only the surface of a chunk is spawned, removing 2774 unnecessary instances per chunk of 16 voxels cubed.
+
+Improved said optimization algorithm to function above the individual chunk level.
+
+Added data-based block type generation.
+
+Added dynamic instancing logic for chunks with multiple block types.
+
+Moved PCG calculations to a custom thread and distributed instancing times.
+
+Implemented culling, saving, and loading.
+
